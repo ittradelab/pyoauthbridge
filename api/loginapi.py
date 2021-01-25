@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 class Login:
     def __init__(self, login_id, base_url):
         self.login_id = login_id
@@ -41,6 +42,6 @@ if __name__ == '__main__':
     login = Login("KP154", "https://cash.basanonline.com/")
     out = login.user_login("Basan@007")
     # twofatoken = out['data']['twofa']['twofa_token']
-    consoletwofatoken
+
     # out = login.twofa("22", "111111", twofatoken)
     print(out)
