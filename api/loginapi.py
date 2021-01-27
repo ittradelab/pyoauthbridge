@@ -33,7 +33,7 @@ class Login:
                 }
             ],
             'twofa_token': twofa_token,
-            'type': 'pin'
+            'type': 'PIN'
         }
         req = requests.post(f'{base_url}/api/v1/user/twofa', headers=headers, data=json.dumps(data))
         return req.json()
@@ -41,7 +41,7 @@ class Login:
 if __name__ == '__main__':
     login = Login("KP154", "https://cash.basanonline.com/")
     out = login.user_login("Basan@007")
-    # twofatoken = out['data']['twofa']['twofa_token']
-
-    # out = login.twofa("22", "111111", twofatoken)
+    twofatoken = out['data']['twofa']['twofa_token']
+    print(twofatoken)
+    out = login.twofa("22", "111111", twofatoken)
     print(out)
