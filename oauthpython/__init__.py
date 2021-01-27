@@ -1,2 +1,2 @@
-from oauthpython.loginapi import Login
+from oauthpython.initiate import Login
 __all__ = ["Login"]

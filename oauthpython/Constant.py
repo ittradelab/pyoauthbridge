@@ -1,1 +1,0 @@
-EndPoint = "https://cash.basanonline.com/"
