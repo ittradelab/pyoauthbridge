@@ -71,153 +71,153 @@ class Initiate:
         res = requests.delete(f'{self.base_url}{url}' , params=params, headers=headers)
         return res.json()
 
-    def profile(self, login_id):
-        params = {'client_id': login_id}
+    def profile(self, payload):
+        params = {'client_id': payload.client_id}
         res = self.get_request("/api/v1/user/profile", params)
         return res
 
-    def place_normal_order(self, exchange, instrument_token, client_id, order_type, amo, price, quantity, disclosed_quantity, validity, product, order_side, user_order_id, tigger_price, execution_type):
+    def place_normal_order(self, payload):
         data = {
-            "exchange": exchange,
-            "instrument_token": instrument_token,
-            "client_id": client_id,
-            "order_type": order_type,
-            "amo": amo,
-            "price": price,
-            "quantity": quantity,
-            "disclosed_quantity": disclosed_quantity,
-            "validity": validity,
-            "product": product,
-            "order_side": order_side,
+            "exchange": payload.exchange,
+            "instrument_token": payload.instrument_token,
+            "client_id": payload.client_id,
+            "order_type": payload.order_type,
+            "amo": payload.amo,
+            "price": payload.price,
+            "quantity": payload.quantity,
+            "disclosed_quantity": payload.disclosed_quantity,
+            "validity": payload.validity,
+            "product": payload.product,
+            "order_side": payload.order_side,
             "device": "api",
-            "user_order_id": user_order_id,
-            "trigger_price": tigger_price,
-            "execution_type": execution_type
+            "user_order_id": payload.user_order_id,
+            "trigger_price": payload.tigger_price,
+            "execution_type": payload.execution_type
         }
         res = self.post_request(f'/api/v1/orders', data)
         return res
 
-    def modify_orders(self, exchange, instrument_token, client_id, order_type, price, quantity, disclosed_quantity, validity, product, oms_order_id, trigger_price, execution_type):
+    def modify_orders(self, payload):
         data = {
-            "exchange": exchange,
-            "instrument_token": instrument_token,
-            "client_id": client_id,
-            "order_type": order_type,
-            "price": price,
-            "quantity": quantity,
-            "disclosed_quantity": disclosed_quantity,
-            "validity": validity,
-            "product": product,
-            "oms_order_id": oms_order_id,
-            "trigger_price": trigger_price,
-            "execution_type": execution_type
+            "exchange": payload.exchange,
+            "instrument_token": payload.instrument_token,
+            "client_id": payload.client_id,
+            "order_type": payload.order_type,
+            "price": payload.price,
+            "quantity": payload.quantity,
+            "disclosed_quantity": payload.disclosed_quantity,
+            "validity": payload.validity,
+            "product": payload.product,
+            "oms_order_id": payload.oms_order_id,
+            "trigger_price": payload.trigger_price,
+            "execution_type": payload.execution_type
         }
         res = self.put_request("/api/v1/orders", data)
         return res
 
-    def cancel_orders(self, oms_order_id, client_id, execution_type):
+    def cancel_orders(self, payload):
         params = {
-            'client_id': client_id,
-            'execution_type': execution_type
+            'client_id': payload.client_id,
+            'execution_type': payload.execution_type
         }
-        res = self.delete_request(f'/api/v1/orders/{oms_order_id}', params)
+        res = self.delete_request(f'/api/v1/orders/{payload.oms_order_id}', params)
         return res
 
-    def scripinfo(self, token):
+    def scripinfo(self, payload):
         params = {
             'info': 'scrip',
-            'token': token
+            'token': payload.token
         }
         res = self.get_request(f'/api/v1/contract/NSE', params)
         return res
 
-    def search_script(self, key):
+    def search_script(self, payload):
         params = {
-            'key': key
+            'key': payload.key
         }
         res = self.get_request(f'/api/v1/search', params)
         return res
 
-    def fetch_pending_orders(self, client_id):
+    def fetch_pending_orders(self, payload):
         params = {
             'type': 'pending',
-            'client_id': client_id
+            'client_id': payload.client_id
         }
         res = self.get_request(f'/api/v1/orders', params)
         return res
 
-    def fetch_completed_orders(self, client_id):
+    def fetch_completed_orders(self, payload):
         params = {
             'type': 'completed',
-            'client_id': client_id
+            'client_id': payload.client_id
         }
         res = self.get_request(f'/api/v1/orders', params)
         return res
 
-    def trade_book(self, client_id):
+    def trade_book(self, payload):
         params = {
-            'client_id': client_id
+            'client_id': payload.client_id
         }
         res = self.get_request(f'/api/v1/trades', params)
         return res
 
-    def order_history(self, oms_order_id, client_id):
+    def order_history(self, payload):
         params = {
-            'client_id': client_id
+            'client_id': payload.client_id
         }
-        res = self.get_request(f'/api/v1/order/{oms_order_id}/history', params)
+        res = self.get_request(f'/api/v1/order/{payload.oms_order_id}/history', params)
         return res
 
-    def fetch_live_position(self, client_id):
+    def fetch_live_position(self, payload):
         params = {
-            'client_id': client_id,
+            'client_id': payload.client_id,
             'type': 'live'
         }
         res = self.get_request(f'/api/v1/positions', params)
         return res
 
-    def fetch_netwise_position(self, client_id):
+    def fetch_netwise_position(self, payload):
         params = {
-            'client_id': client_id,
+            'client_id': payload.client_id,
             'type': 'historical'
         }
         res = self.get_request(f'/api/v1/positions', params)
         return res
 
-    def fetch_demat_holding(self, client_id):
+    def fetch_demat_holding(self, payload):
         params = {
-            'client_id': client_id
+            'client_id': payload.client_id
         }
         res = self.get_request(f'/api/v1/holdings', params)
         return res
 
-    def fetch_funds_v2(self, client_id):
+    def fetch_funds_v2(self, payload):
         params = {
-            'client_id': client_id,
+            'client_id': payload.client_id,
             'type': 'all'
         }
         res = self.get_request(f'/api/v2/funds/view', params)
         return res
 
-    def fetch_funds_v1(self, client_id):
+    def fetch_funds_v1(self, payload):
         params = {
-            'client_id': client_id,
+            'client_id': payload.client_id,
             'type': 'all'
         }
         res = self.get_request(f'/api/v1/funds/view', params)
         return res
 
-    def create_alert(self, exchange, instrument_token, wait_time, condition, user_set_values, frequency, expiry, state_after_expiry, user_message):
+    def create_alert(self, payload):
         data = {
-            'exchange': exchange,
-            'instrument_token': instrument_token,
-            'wait_time': wait_time,
-            'condition': condition,
-            'user_set_values': user_set_values,
-            'frequency': frequency,
-            'expiry': expiry,
-            'state_after_expiry': state_after_expiry,
-            'user_message': user_message
+            'exchange': payload.exchange,
+            'instrument_token': payload.instrument_token,
+            'wait_time': payload.wait_time,
+            'condition': payload.condition,
+            'user_set_values': payload.user_set_values,
+            'frequency': payload.frequency,
+            'expiry': payload.expiry,
+            'state_after_expiry': payload.state_after_expiry,
+            'user_message': payload.user_message
         }
         res = self.post_request(f'/api/v1/alerts', data)
         return res
@@ -227,17 +227,17 @@ class Initiate:
         res = self.get_request(f'/api/v1/alerts', params)
         return res
 
-    def alert_update(self, exchange, instrument_token, wait_time, condition, user_set_values, frequency, expiry, state_after_expiry, user_message):
+    def alert_update(self, payload):
         data = {
-            'exchange': exchange,
-            'instrument_token': instrument_token,
-            'wait_time': wait_time,
-            'condition': condition,
-            'user_set_values': user_set_values,
-            'frequency': frequency,
-            'expiry': expiry,
-            'state_after_expiry': state_after_expiry,
-            'user_message': user_message
+            'exchange': payload.exchange,
+            'instrument_token': payload.instrument_token,
+            'wait_time': payload.wait_time,
+            'condition': payload.condition,
+            'user_set_values': payload.user_set_values,
+            'frequency': payload.frequency,
+            'expiry': payload.expiry,
+            'state_after_expiry': payload.state_after_expiry,
+            'user_message': payload.user_message
         }
         res = self.put_request(f'/api/v1/alerts', data)
         return res
