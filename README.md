@@ -1,6 +1,6 @@
 # pyoauthbridge
 
-pyoauthbridge is a official python library to communicate with Tradelab Api.
+pyoauthbridge is a official python library to communicate with Tradelab API.
 
 ### Prerequisites
 
