@@ -1,11 +1,11 @@
 # pyoauthbridge
 
-pyoauthbridge is a official python library to communicate with tradelab api.
+pyoauthbridge is a official python library to communicate with Tradelab Api.
 
 ### Prerequisites
 
 * Please refer the document http://primusapi.tradelab.in/webapi/
-* The API uses oauth2 protocol . You will need following to get started -(Please contact your broker team to get these details)
+* The API uses oauth2 protocol . You will need following to get started -(Please contact your broker team to get base_url. You will get auth_token once you get successfully logged in.)
 ```
 base_url
 auth_token
@@ -18,7 +18,7 @@ pyoauthbridge requires [python](https://www.python.org/) v3+ to run.
 Install the package using pip.
 
 ```sh
-$ pip install pyoauthbridge
+$ pip3 install pyoauthbridge
 ```
 
 ### How to use
