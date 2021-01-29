@@ -250,5 +250,5 @@ if __name__ == "__main__":
     auth_token = token_json['data']['auth_token']
     connect.set_token(auth_token)
     print(auth_token)
-    res = connect.modify_orders('NSE', 10666, 'SATYAM', 'LIMIT', 34.8, 1, 0, 'DAY', 'MIS', '210102000001979', 0, 'REGULAR')
+    res = connect.modify_orders()
     print(res)
