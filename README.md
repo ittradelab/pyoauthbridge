@@ -1,34 +1,43 @@
-# Oauth-Python
+# pyoauthbridge
 
-Oauth-Python is a official python library to communicate with tradelab api.
+pyoauthbridge is a official python library to communicate with tradelab api.
+
+### Prerequisites
+
+* Please refer the document http://primusapi.tradelab.in/webapi/
+* The API uses oauth2 protocol . You will need following to get started -(Please contact your broker team to get these details)
+```
+base_url
+auth_token
+```
 
 ### Installation
 
-Oauth-Python requires [python](https://www.python.org/) v3+ to run.
+pyoauthbridge requires [python](https://www.python.org/) v3+ to run.
 
 Install the package using pip.
 
 ```sh
-$ pip install oauth-python
+$ pip install pyoauthbridge
 ```
 
 ### How to use
 
 import package
 ```sh
-$ from oauth-python import Initiate
+from pyoauthbridge import Connect
 ```
 login
 ```sh
-$ connect = Initiate("https://mimik.tradelab.in")
-$ token_json = connect.user_login("john", "********")
-$ token = token_json['data']['twofa']['twofa_token']
-$ token_json = connect.twofa("22", "********", token)
+conn = Connect(base_url)
+token_json = conn.user_login("JOHN", "password")
+twofa_token = token_json['data']['twofa']['twofa_token']
+auth_token_json = conn.twofa("22", "answer", twofa_token)
 ```
 set token
 ```sh
-$ auth_token = token_json['data']['auth_token']
-$ connect.set_token(auth_token)
+auth_token = auth_token_json['data']['auth_token']
+conn.set_token(auth_token)
 ```
 
 implementation
@@ -36,6 +45,6 @@ implementation
 payload = {
     'client_id': 'JOHN'
 }
-res = connect.profile(payload)
+res = conn.fetch_profile(payload)
 print(res)
 ```
