@@ -3,5 +3,5 @@ venv
 build
 dist
 .idea
-.api-python-library.iml
+.pyoauthbridge-library.iml
 .misc.xml
